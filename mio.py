@@ -5,11 +5,11 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 # Cargar los datos del archivo CSV
-data = pd.read_csv('datos_accion.csv')
+#data = pd.read_csv('datos_accion.csv')
 
 # Seleccionar las columnas relevantes
-data = data[['precio']]
-
+#data = data[['precio']]
+data=[]
 # Escalar los datos
 scaler = MinMaxScaler()
 data = scaler.fit_transform(data)
