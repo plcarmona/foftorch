@@ -16,8 +16,11 @@ class LSTM(nn.Module):
 
         self.hidden_cell = (torch.zeros(1,1,self.hidden_layer_size),
                             torch.zeros(1,1,self.hidden_layer_size))
+        self.float()
 
     def forward(self, input_seq):
+        #detach hidden state from history
+        self.hidden_cell = (self.hidden_cell[0].detach(), self.hidden_cell[1].detach())
         lstm_out, self.hidden_cell = self.lstm(input_seq.view(len(input_seq) ,1, -1), self.hidden_cell)
         predictions = self.linear(lstm_out.view(len(input_seq), -1))
         return predictions[-1]
